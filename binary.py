@@ -38,7 +38,7 @@ def main(args):
             np.random.shuffle(x)
             labels = [labels[i] for i in x]
             paths  = [paths [i] for i in x]
-            length = length // 6 * 5 
+            length = args.train_size
             if args.mode == 'TRAIN':
                 labels = labels[:length]
                 paths  = paths [:length]
@@ -137,6 +137,8 @@ def parse_arguments(argv):
         help='Could be either a directory containing the meta_file and ckpt_file or a model protobuf (.pb) file')
     parser.add_argument('name',
         help='name of the person to classifiy')
+    parser.add_argument('train_size', type=int,
+        help = 'Number of imaged used to train', default = 10)
     parser.add_argument('--batch_size', type=int,
         help='Number of images to process in a batch.', default=90)
     parser.add_argument('--image_size', type=int,
